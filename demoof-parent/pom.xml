@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
 
-    <groupId>pro.wpinchine.demoof.spring</groupId>
-    <artifactId>demoof-bom</artifactId>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>pro.wpinchine.demoof</groupId>
+    <artifactId>demoof-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -34,15 +34,16 @@
         <netty.version>4.1.72.Final</netty.version>
         <log4j2.version>2.17.1</log4j2.version>
         <jackson.version>2.12.6</jackson.version>
-        <spring-boot.version>2.6.2</spring-boot.version>
-        <spring-cloud.version>2021.0.0</spring-cloud.version>
+        <spring-boot.version>2.6.10</spring-boot.version>
+        <spring-cloud.version>2021.0.3</spring-cloud.version>
+        <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>
         <hutool.version>5.7.20</hutool.version>
 
         <!--    component    -->
         <redisson.version>3.16.8</redisson.version>
         <mybatis-spring-boot.version>2.1.4</mybatis-spring-boot.version>
         <druid-spring-boot.version>1.2.8</druid-spring-boot.version>
-        <fastjson.version>1.2.79</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <guava.version>31.0.1-jre</guava.version>
         <bytebuddy.version>1.12.6</bytebuddy.version>
         <mybatis-plus.version>3.4.1</mybatis-plus.version>
@@ -198,6 +199,14 @@
             </dependency>
 
             <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-bom</artifactId>
                 <version>${hutool.version}</version>
@@ -305,6 +314,24 @@
             </dependency>
 
         </dependencies>
-
     </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>
